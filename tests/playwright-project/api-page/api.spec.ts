@@ -1,3 +1,5 @@
+//Css selector + const
+
 import { test, expect } from "@playwright/test";
 
 test.describe("Api page tests", () => {
@@ -9,10 +11,13 @@ test.describe("Api page tests", () => {
     "[Test_Id-10] - Check API link navigation",
     { tag: "@pw" },
     async ({ page }) => {
-      await expect(page.locator('a:has-text("API")')).toBeVisible();
-      await page.locator('a:has-text("API")').click();
+      const api_link = 'a:has-text("API")';
+      const header_h1 = "h1";
+
+      await expect(page.locator(api_link)).toBeVisible();
+      await page.locator(api_link).click();
       await expect(page).toHaveURL(/.*api/);
-      await expect(page.locator("h1")).toContainText("Playwright Library");
+      await expect(page.locator(header_h1)).toContainText("Playwright Library");
     }
   );
 });
