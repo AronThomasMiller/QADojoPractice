@@ -1,3 +1,5 @@
+//Css selector + const
+
 import { test, expect } from "@playwright/test";
 
 test.describe("Get started tests", () => {
@@ -9,9 +11,12 @@ test.describe("Get started tests", () => {
     "[Test_Id-6] - Verify Get Started link navigation",
     { tag: "@pw" },
     async ({ page }) => {
-      await page.locator('a:has-text("Get started")').click();
+      const get_started_link = 'a:has-text("Get started")';
+      const header_h1 = "h1";
+
+      await page.locator(get_started_link).click();
       await expect(page).toHaveURL(/.*intro/);
-      await expect(page.locator("h1")).toContainText("Installation");
+      await expect(page.locator(header_h1)).toContainText("Installation");
     }
   );
 });

@@ -1,3 +1,5 @@
+//Css selector + const
+
 import { test, expect } from "@playwright/test";
 
 test.describe("Main page tests", () => {
@@ -9,20 +11,20 @@ test.describe("Main page tests", () => {
     "[Test_Id-7] - Check Playwright homepage title",
     { tag: "@pw" },
     async ({ page }) => {
+      const mainTitle = page.locator('[aria-label="Main"]');
+
       await expect(page).toHaveTitle(/Playwright/);
-      await expect(page.locator('[aria-label="Main"] b')).toContainText(
-        "Playwright"
-      );
+      await expect(mainTitle).toContainText("Playwright");
     }
   );
 
   test(
-    "[Test_Id-9] - Verify dark/light theme toggle is visible",
+    "[Test_Id-9] - Verify dark/light theme toggle іcon is visible",
     { tag: "@pw" },
     async ({ page }) => {
-      await expect(
-        page.locator('[class="lightToggleIcon_pyhR"]')
-      ).toBeVisible();
+      const themeToggleIcon = page.locator('[class="lightToggleIcon_pyhR"]');
+
+      await expect(themeToggleIcon).toBeVisible();
     }
   );
 });

@@ -1,3 +1,5 @@
+//xPath + const
+
 import { test, expect } from "@playwright/test";
 
 test.describe("Main page tests", () => {
@@ -9,10 +11,11 @@ test.describe("Main page tests", () => {
     "[Test_Id-1] - Add coffee to cart and verify cart count",
     { tag: "@coffe" },
     async ({ page }) => {
-      await page.locator('[data-test="Espresso"]').click();
-      await expect(page.locator('[aria-label="Cart page"]')).toContainText(
-        "cart (1)"
-      );
+      const espresso = page.locator('//div[@data-test="Espresso"]');
+      const cartPage = page.locator('//*[@aria-label="Cart page"]');
+
+      await espresso.click();
+      await expect(cartPage).toContainText("cart (1)");
     }
   );
 
@@ -20,28 +23,27 @@ test.describe("Main page tests", () => {
     "[Test_Id-4] - Verify discount extra cup flow works correctly",
     { tag: "@coffe" },
     async ({ page }) => {
-      await page.locator('[data-test="Espresso_Macchiato"]').click();
-      await page.locator('[data-test="Cappuccino"]').click();
-      await page.locator('[data-test="Mocha"]').click();
+      const espressoMacchiato = page.locator('//div[@data-test="Espresso_Macchiato"]');
+      const cappuccino = page.locator('//div[@data-test="Cappuccino"]');
+      const mocha = page.locator('//div[@data-test="Mocha"]');
+      const cartPage = page.locator('//*[@aria-label="Cart page"]');
+      const yesButton = page.locator('//button[contains(text(), "Yes, of course!")]');
+      const cartLink = page.locator('//a[@aria-label="Cart page"]');
+      const discountedMocha = page.locator('//li[contains(., "(Discounted) Mocha")]//span[contains(@class, "unit-desc") and contains(text(), "$4.00 x 1")]');
+
+      await espressoMacchiato.click();
+      await cappuccino.click();
+      await mocha.click();
+
       await expect(
-        page
-          .locator("body")
-          .locator(
-            ":text('It\\'s your lucky day! Get an extra cup of Mocha for $4.espressochocolate')"
-          )
+        page.locator('//body//*[contains(text(), "It\'s your lucky day! Get an extra cup of Mocha")]')
       ).toBeVisible();
-      await expect(page.locator('[aria-label="Cart page"]')).toContainText(
-        "cart (3)"
-      );
-      await page.locator('button:has-text("Yes, of course!")').click();
-      await expect(page.locator('[aria-label="Cart page"]')).toContainText(
-        "cart (4)"
-      );
-      await page.locator('a[aria-label="Cart page"]').click();
-      await expect(
-        page.locator("div").filter({ hasText: /^\(Discounted\) Mocha$/ })
-      ).toBeVisible();
-      await expect(page.locator("#app")).toContainText("$4.00");
+
+      await expect(cartPage).toContainText("cart (3)");
+      await yesButton.click();
+      await expect(cartPage).toContainText("cart (4)");
+      await cartLink.click();
+      await expect(discountedMocha).toBeVisible();
     }
   );
 });
