@@ -1,3 +1,6 @@
+// --------------------------------------------
+//                     ЦИКЛИ   
+// --------------------------------------------
 //---------------------
 //task 1
 //---------------------
@@ -8,6 +11,8 @@
 //     console.log("number is odd");
 //   }
 // }
+
+//const { isArray } = require("util")
 
 // isEven(2);
 
@@ -99,3 +104,127 @@
 //   }
 // }
 // getNumberType(0);
+
+// --------------------------------------------
+//                     МАСИВИ      
+// --------------------------------------------
+
+//---------------------
+// task1
+//---------------------
+
+// function isArray(input) {
+//   return Array.isArray(input);
+// }
+
+// console.log(isArray('QA DOJO'));   
+// console.log(isArray([1, 2, 4, 0])); 
+
+//---------------------
+// task2
+//---------------------
+//version 1
+
+// function cloneArray(arr) {
+//   return [...arr]   
+// }
+
+//version 2
+
+// function cloneArray(arr) {
+//   const result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     result.push(arr[i]);
+//   }
+//   return result;
+// }
+
+// console.log(cloneArray([1, 2, 4, 0])); // [1, 2, 4, 0]  
+// console.log(cloneArray([1, 2, [4, 0]])); // [1, 2, [4, 0]]    
+
+
+//---------------------
+// task3
+//---------------------
+
+// function first(arr, n) {
+//   if (n === undefined) {
+//     return arr[0];
+//   }
+//   return arr.slice(0, n);
+// }
+// console.log(first([7, 9, 0, -2]));      
+// console.log(first([7, 9, 0, -2],3));   
+
+//---------------------
+// task4
+//---------------------
+
+// function last(arr, n) {
+//   if (n === undefined) {
+//     return arr[arr.length - 1];
+//   }
+//   return arr.slice(-n);
+// }
+
+// console.log(last([7, 9, 0, -2])); 
+// console.log(last([7, 9, 0, -2], 3)); 
+
+//---------------------
+// task5
+//---------------------
+// const myColor = ["Red", "Green", "White", "Black"];
+// console.log(myColor.join());
+//---------------------
+// task6*
+//---------------------
+//---------------------
+// task7*
+//---------------------
+//---------------------
+// task8
+//---------------------
+// const numbers = [];
+
+// for (let i = 1; i <= 345; i++) {
+//   numbers.push(i);
+// }
+
+// console.log(numbers);
+//---------------------
+// task9
+//---------------------
+// let sum = 0;
+
+// for (let i = 1; i <= 100; i++) {
+//   sum += i;
+// }
+
+// console.log(sum);
+//---------------------
+// task10
+//---------------------
+// const numbers = [];
+
+// for (let i = 241; i >= 1; i--) {
+//   numbers.push(i);
+// }
+
+// console.log(numbers);
+
+//---------------------
+// task11
+//---------------------
+// function maxNumber(a, b) {
+//   if (a > b) {
+//     console.log(a);
+//   } else if (b > a) {
+//     console.log(b);
+//   } else {
+//     console.log("Both numbers are equal.");
+//   }
+// }
+
+// maxNumber(10, 20);  
+// maxNumber(5, 5);    
+// maxNumber(-10, 0); 
