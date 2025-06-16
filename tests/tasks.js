@@ -1,5 +1,5 @@
 // --------------------------------------------
-//                     ЦИКЛИ   
+//                     ЦИКЛИ
 // --------------------------------------------
 //---------------------
 //task 1
@@ -106,7 +106,7 @@
 // getNumberType(0);
 
 // --------------------------------------------
-//                     МАСИВИ      
+//                     МАСИВИ
 // --------------------------------------------
 
 //---------------------
@@ -117,8 +117,8 @@
 //   return Array.isArray(input);
 // }
 
-// console.log(isArray('QA DOJO'));   
-// console.log(isArray([1, 2, 4, 0])); 
+// console.log(isArray('QA DOJO'));
+// console.log(isArray([1, 2, 4, 0]));
 
 //---------------------
 // task2
@@ -126,7 +126,7 @@
 //version 1
 
 // function cloneArray(arr) {
-//   return [...arr]   
+//   return [...arr]
 // }
 
 //version 2
@@ -139,9 +139,8 @@
 //   return result;
 // }
 
-// console.log(cloneArray([1, 2, 4, 0])); // [1, 2, 4, 0]  
-// console.log(cloneArray([1, 2, [4, 0]])); // [1, 2, [4, 0]]    
-
+// console.log(cloneArray([1, 2, 4, 0])); // [1, 2, 4, 0]
+// console.log(cloneArray([1, 2, [4, 0]])); // [1, 2, [4, 0]]
 
 //---------------------
 // task3
@@ -153,8 +152,8 @@
 //   }
 //   return arr.slice(0, n);
 // }
-// console.log(first([7, 9, 0, -2]));      
-// console.log(first([7, 9, 0, -2],3));   
+// console.log(first([7, 9, 0, -2]));
+// console.log(first([7, 9, 0, -2],3));
 
 //---------------------
 // task4
@@ -167,8 +166,8 @@
 //   return arr.slice(-n);
 // }
 
-// console.log(last([7, 9, 0, -2])); 
-// console.log(last([7, 9, 0, -2], 3)); 
+// console.log(last([7, 9, 0, -2]));
+// console.log(last([7, 9, 0, -2], 3));
 
 //---------------------
 // task5
@@ -225,6 +224,87 @@
 //   }
 // }
 
-// maxNumber(10, 20);  
-// maxNumber(5, 5);    
-// maxNumber(-10, 0); 
+// maxNumber(10, 20);
+// maxNumber(5, 5);
+// maxNumber(-10, 0);
+
+//---------------------
+//              Обєкти
+//---------------------
+//---------------------
+// task1
+//---------------------
+// const book = {
+//     title: "book name",
+//     author: "author name",
+//     pages: 1
+// };
+// console.log("Title:", book.title);
+// console.log("Author:", book.author);
+// console.log("Pages:", book.pages);
+
+//---------------------
+// task2
+//---------------------
+// book.isAvailable = true;
+// console.log("Is Available:", book.isAvailable);
+
+//---------------------
+// task3
+//---------------------
+// const obj = {
+//     title: "book name",
+//     author: "author name",
+//     pages: 1
+// };
+
+// function printObject(obj) {
+//   for (const key in obj) {
+//     if (obj.hasOwnProperty(key)) {
+//       console.log(`Ключ: ${key}, Значення: ${obj[key]}`);
+//     }
+//   }
+// }
+// printObject(obj)
+
+//---------------------
+// task4
+//---------------------
+// const user = {
+//     profile: {
+//         email: "mp@gm.com",
+//     }
+// };
+// console.log(user.profile.email);
+
+//---------------------
+// task5
+//---------------------
+// const user = { name: 'Maksym', age: 26 };
+// if (user.hasOwnProperty('name')) {
+//   console.log('Поле "name" існує');
+// } else {
+//   console.log('Поле "name" не існує');
+// }
+//---------------------
+// task6
+//---------------------
+// const obj = { name: 'Maksym', age: 26};
+// const countObjProperties = Object.keys(obj).length;
+// console.log(`В обєкті ${countObjProperties} властивості(ей).`);
+
+//---------------------
+// task7
+//---------------------
+// const settings = { theme: "light", notifications: true, version: "2.0.0" };
+// const settingsCopy1 = { ...settings };
+// console.log(settingsCopy1);
+//---------------------
+// task8
+//---------------------
+// const settings = { theme: "light", notifications: true, version: "2.0.0" };
+// function getValues(obj) {
+//   return Object.values(obj);
+// }
+// console.log(getValues(settings));
+
