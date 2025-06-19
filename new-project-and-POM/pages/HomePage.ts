@@ -8,9 +8,9 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.yourFeedTab = page.getByRole("link", { name: "Your Feed" });
-    this.globalFeedTab = page.getByRole("link", { name: "Global Feed" });
-    this.firstTag = page.locator(
+    this.yourFeedTab = this.page.getByRole("link", { name: "Your Feed" });
+    this.globalFeedTab = this.page.getByRole("link", { name: "Global Feed" });
+    this.firstTag = this.page.locator(
       "//div[@class='tag-list']/a[contains(@class, 'tag-pill')]"
     );
   }
