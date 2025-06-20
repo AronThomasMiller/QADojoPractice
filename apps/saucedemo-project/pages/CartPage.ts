@@ -7,8 +7,8 @@ export class CartPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.cartItemName = page.locator(".inventory_item_name");
-    this.checkoutButton = page.locator('[data-test="checkout"]');
+    this.cartItemName = this.page.locator(".inventory_item_name");
+    this.checkoutButton = this.page.locator('[data-test="checkout"]');
   }
 
   async getCartItemName(): Promise<string> {
