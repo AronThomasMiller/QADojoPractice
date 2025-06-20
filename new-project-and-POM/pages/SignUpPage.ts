@@ -9,10 +9,10 @@ export class SignUpPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.getByRole("textbox", { name: "Username" });
-    this.emailInput = page.getByRole("textbox", { name: "Email" });
-    this.passwordInput = page.getByRole("textbox", { name: "Password" });
-    this.signUpButton = page.getByRole("button", { name: "Sign up" });
+    this.usernameInput = this.page.getByRole("textbox", { name: "Username" });
+    this.emailInput = this.page.getByRole("textbox", { name: "Email" });
+    this.passwordInput = this.page.getByRole("textbox", { name: "Password" });
+    this.signUpButton = this.page.getByRole("button", { name: "Sign up" });
   }
 
   async registerUniqueUserAndSignUp(): Promise<{ username: string; email: string; password: string }> {

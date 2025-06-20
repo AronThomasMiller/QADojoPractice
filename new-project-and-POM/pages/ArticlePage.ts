@@ -7,7 +7,7 @@ export class ArticlePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.listOfArticle = page.locator('[data-qa-type="preview-title"]');
+    this.listOfArticle = this.page.locator('[data-qa-type="preview-title"]');
   }
 
   async clickOnFirstArticle() {
