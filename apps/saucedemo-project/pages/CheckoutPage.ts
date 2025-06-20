@@ -32,8 +32,7 @@ export class CheckoutPage {
     return await this.checkOutItemName.innerText();
   }
 
-    async verifySuccessMessage() {
+    async clickFinishButton() {
     await this.finishButton.click();
-    await expect((this.successOrderCompleteMessage)).toContainText('Thank you for your order!')
   }
 }
