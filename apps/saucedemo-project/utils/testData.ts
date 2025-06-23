@@ -1,5 +1,5 @@
 export const personalData = {
-  firstname: "Test",
-  lastname: "Testovich",
+  firstName: "Test",
+  lastName: "Testovich",
   zipCode: "12345",
 };
