@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export class CheckoutPage {
   page: Page;
@@ -25,14 +25,14 @@ export class CheckoutPage {
     await this.firstNameField.fill(firstName);
     await this.lastNameField.fill(lastName);
     await this.postalCodeField.fill(zip);
-    await this.continueButton.click()
+    await this.continueButton.click();
   }
 
   async getCheckoutItemName(): Promise<string> {
     return await this.checkOutItemName.innerText();
   }
 
-    async clickFinishButton() {
+  async clickFinishButton() {
     await this.finishButton.click();
   }
 }

@@ -1,27 +1,55 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/loginPage";
-import { ProductsPage } from "../pages/ProductsPage";
-import { CartPage } from "../pages/CartPage";
-import { CheckoutPage } from "../pages/CheckoutPage";
 import { personalData } from "../utils/testData";
+import { test } from "./fixtures/baseFixture";
+import { expect } from "@playwright/test";
 
-test("User can purchase an order", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com/");
-  const loginPage = new LoginPage(page);
-  const productsPage = new ProductsPage(page);
-  const cartPage = new CartPage(page);
-  const checkoutPage = new CheckoutPage(page);
+test("User can purchase an order", async ({
+  loginPage,
+  productsPage,
+  cartPage,
+  checkoutPage,
+}) => {
+  await test.step("Log in with valid credentials", async () => {
+    await loginPage.loginInAccount();
+  });
 
+  let selectedProduct: string;
+  await test.step("Add first product to the cart", async () => {
+    selectedProduct = await productsPage.addFirstProductToCart();
+  });
 
-  await loginPage.loginInAccount();
-  const selectedProduct = await productsPage.addFirstProductToCart();
-  await productsPage.goToCart();
-  const cartProduct = await cartPage.getCartItemName();
-  expect(cartProduct).toBe(selectedProduct);
-  await cartPage.goToCheckout();
-  await checkoutPage.fillInformation(personalData.firstname, personalData.lastname, personalData.zipCode);
-  const checkoutProduct = await checkoutPage.getCheckoutItemName();
-  expect(checkoutProduct).toBe(selectedProduct);
-  await checkoutPage.clickFinishButton();
-  await expect((checkoutPage.successOrderCompleteMessage)).toContainText('Thank you for your order!')
+  await test.step("Go to the cart page", async () => {
+    await productsPage.goToCart();
+  });
+
+  await test.step("Verify that the correct product is in the cart", async () => {
+    const cartProduct = await cartPage.getCartItemName();
+    expect(cartProduct).toBe(selectedProduct);
+  });
+
+  await test.step("Go to the checkout page", async () => {
+    await cartPage.goToCheckout();
+  });
+
+  await test.step("Fill in personal information at checkout", async () => {
+    await checkoutPage.fillInformation(
+      personalData.firstName,
+      personalData.lastName,
+      personalData.zipCode
+    );
+  });
+
+  await test.step("Verify that the correct product is shown at checkout", async () => {
+    const checkoutProduct = await checkoutPage.getCheckoutItemName();
+    expect(checkoutProduct).toBe(selectedProduct);
+  });
+
+  await test.step("Click the finish button to complete the order", async () => {
+    await checkoutPage.clickFinishButton();
+  });
+
+  await test.step("Verify that the order was successfully completed", async () => {
+    await expect(checkoutPage.successOrderCompleteMessage).toContainText(
+      "Thank you for your order!"
+    );
+  });
 });
