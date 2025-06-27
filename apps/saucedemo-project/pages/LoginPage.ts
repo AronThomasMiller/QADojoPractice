@@ -1,4 +1,6 @@
 import { Locator, Page } from "@playwright/test";
+import { loginUserData} from "../utils/testData";
+import { log } from "console";
 
 export class LoginPage {
   page: Page;
@@ -14,8 +16,8 @@ export class LoginPage {
   }
 
   async loginInAccount() {
-    await this.usernameField.fill("standard_user");
-    await this.passwordField.fill("secret_sauce");
+    await this.usernameField.fill(loginUserData.username_standard_user);
+    await this.passwordField.fill(loginUserData.password);
     await this.loginButton.click();
   }
 }

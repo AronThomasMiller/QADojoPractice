@@ -1,19 +1,9 @@
-import { Locator, Page } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class HomePage {
-  page: Page;
-  yourFeedTab: Locator;
-  globalFeedTab: Locator;
-  firstTag: Locator;
-
-  constructor(page: Page) {
-    this.page = page;
-    this.yourFeedTab = this.page.getByRole("link", { name: "Your Feed" });
-    this.globalFeedTab = this.page.getByRole("link", { name: "Global Feed" });
-    this.firstTag = this.page.locator(
-      "//div[@class='tag-list']/a[contains(@class, 'tag-pill')]"
-    );
-  }
+export class HomePage extends BasePage {
+  yourFeedTab = this.page.getByRole("link", { name: "Your Feed" });
+  globalFeedTab = this.page.getByRole("link", { name: "Global Feed" });
+  firstTag = this.page.locator("//div[@class='tag-list']/a[contains(@class, 'tag-pill')]");
 
   async clickYourFeed() {
     await this.yourFeedTab.click();

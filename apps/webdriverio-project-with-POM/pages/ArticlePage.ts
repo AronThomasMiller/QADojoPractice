@@ -1,22 +1,17 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Locator } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class ArticlePage {
-  page: Page;
-  listOfArticle: Locator;
+export class ArticlePage extends BasePage {
+  listOfArticle = this.page.locator('[data-qa-type="preview-title"]');
 
-
-  constructor(page: Page) {
-    this.page = page;
-    this.listOfArticle = this.page.locator('[data-qa-type="preview-title"]');
+  private tagLocator(tag: string): Locator {
+    return this.page.locator(`.tag-list a:has-text("${tag}")`);
   }
-
   async clickOnFirstArticle() {
     await this.listOfArticle.first().click();
   }
 
   async verifyTagIsVisible(tagName: string) {
-    await expect(
-      this.page.locator(`.tag-list a:has-text("${tagName}")`)
-    ).toBeVisible();
+    await expect(this.tagLocator(tagName)).toBeVisible();
   }
 }
